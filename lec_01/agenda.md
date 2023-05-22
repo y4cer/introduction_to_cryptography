@@ -17,13 +17,15 @@
         - Well defined function
         - Image, preimage
         - Surjection, Injection, Bijection
-        - Types of functions (different types of morphisms)
+        -- Types of functions (different types of morphisms)
     - Basic properties of integers
-        - Well-ordering of integers
+        -- Well-ordering of integers
         - Divisibility of integers, GCD, LCM
         - Fermat's little theorem - we will prove it later on the next lecture
         - Euler's $\varphi$ function (hook to RSA cryptosystem)
-- Introduction to modular arithmetics (clock arithmetics) show this monstrousity: https://en.wikipedia.org/wiki/File:Algebraic_structures_-_magma_to_group.svg
+- Introduction to modular arithmetics (clock arithmetics) show this monstrousity: 
+https://en.wikipedia.org/wiki/File:Algebraic_structures_-_magma_to_group.svg
 
 # HW
-Build an isomorphism from $\varphi : \mathbb{Z} \to \mathbb{N}$ and show that $\varphi$ is indeed an isomorphism, i.e. $\mathbb{Z}$ and $\mathbb{N}$ are isomorphic (have the same structure)
+Build an bijection $\varphi : \mathbb{Z} \to \mathbb{N}$ and show that $\varphi$ is indeed a bijection, i.e. $\varphi$
+is the surjection and injection simultaneously.
