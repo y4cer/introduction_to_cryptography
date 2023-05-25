@@ -1,7 +1,7 @@
 # Basic abstract algebra with SageMath (cnt.)
 
-- Notation of semigroup, examples with words, strings in general
-- Notation of monoid, examples of monoids in $\mathbb{N^{+}}$
+- Notion of semigroup, examples with words, strings in general
+- Notion of monoid, examples of monoids in $\mathbb{N^{+}}$
 - Introduction to groups, the Grothendieck group, proof of Fermat's little theorem using algebraic tools
 - Introduction to fields (just give definition and some examples)
 
@@ -9,10 +9,7 @@
     - elementwise addition -> scalar multiplication
     - negation
 
-- What is SageMath?
-    - Show how to install
-    - Show some capabilities:
-        - integers, rationals, etc.
+- SageMath in context of mentioned algebras
     - How to initialize some algebras
     - Discrete log (will take a more detailed view later), Euler's $\varphi$, integer factorization, Cayley tables
 
