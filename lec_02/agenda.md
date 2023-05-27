@@ -13,9 +13,10 @@
     - How to initialize some algebras
     - Discrete log (will take a more detailed view later), Euler's $\varphi$, integer factorization, Cayley tables
 
-- Prime numbers and Integer factorization
-    - Roots modulo $n$ (hook to group of units from $\mathbb{C}$)
-    - Primality testing Miller-Rabin, AKS
+Move these to RSA discussion
+-- - Prime numbers and Integer factorization
+--     - Roots modulo $n$ (hook to group of units from $\mathbb{C}$)
+--     - Primality testing Miller-Rabin, AKS
 
 # HW
 Пусть n и m — целые положительные взаимно простые числа. Постройте изоморфизм

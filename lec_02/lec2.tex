@@ -80,6 +80,30 @@
 	\end{example}
 \end{frame}
 
+\begin{frame}{Monoid morphisms}
+	\subsection{Monoid morphisms}
+	\begin{definition}
+		Monoid homomorphism is a structure preserving map $\varphi : (M, +) \to (L, \star)$, such that for all 
+		$m, n \in M$ the following holds: $\varphi(m + n) = \varphi(m) \star \varphi(n)$
+	\end{definition}
+\end{frame}
+
+\begin{frame}
+	\begin{definition}[Monomorphism]
+		A group homomorphism that is injective (or, one-to-one); i.e., preserves distinctness.
+	\end{definition}
+	\begin{definition}[Epimorphism]
+		A group homomorphism that is surjective (or, onto); i.e., reaches every point in the codomain.		
+	\end{definition}
+	\begin{definition}[Isomorphism]
+		A group homomorphism that is bijective; i.e., injective and surjective. Its inverse is also a group 
+		homomorphism.	
+	\end{definition}
+	\begin{definition}[Endomorphism]
+		A group homomorphism, $h: G \to G$; the domain and codomain are the same. Also called an endomorphism of $G$.		
+	\end{definition}
+\end{frame}
+
 \begin{frame}{Group}
 	\subsection{Group}
 	% groups are the central topic of the group theory (interestengly)
@@ -94,6 +118,9 @@
 		Order of a finite group is a number of elements in this group. If the group is infinite, one says that the order
 		is infinite.
 	\end{definition}
+\end{frame}
+	
+\begin{frame}{Group examples}
 	\begin{example}[Groups]
 		\begin{enumerate}
 			\item Empty group. $G = (\{\}, +)$
@@ -145,6 +172,7 @@
 		
 		$\overline{A} = \langle A \rangle$ 
 	\end{definition}
+	$\langle A \rangle \le G$
 	\begin{example}
 		$G = \mathbb{Z}, H = (\langle 2 \rangle, +)$
 	\end{example}
@@ -230,11 +258,19 @@
 
 \begin{frame}{Proof of Euler's theorem}
 	\begin{proof}[Proof (Euler's theorem)]
-		
+		If $a$ is coprime to $n$, then it must be in some residue class of $n$. Then 
+		$\langle a \rangle \le \mathbb{Z} / n \mathbb{Z}^*$. \newline
+		By Lagrange's theorem, $k = \#\langle a \rangle \ | \ \#\mathbb{Z} / n \mathbb{Z}^* \Rightarrow \varphi = kM$. 
+		\newline
+		Then, $a^{\varphi(n)} = a^{kM} = (a^{k})^M = 1^M \equiv 1 \pmod n$ 
+	\end{proof}
+	\begin{proof}[Proof (Fermat's little theorem)]
+		And Fermat's little theorem is just a particular case of Euler's theorem. \newline
+		$a ^ {p - 1} = a ^ {\varphi(p)} \equiv 1 \pmod p$, where $\varphi(p) = p - 1$ 
 	\end{proof}
 \end{frame}
 
-\begin{frame}{Quotient groups (proof is optional)}
+\begin{frame}{Quotient groups (proof is left as an optional exercise)}
 	\section{Quotient groups}
 	\begin{definition}ement $g \in G$ and a normal subgroup $N$ of $G$, one can define $G / N$ the set of 
 		all cosets of $N$ in $G$. That is: $G / N = \{ gN, \text{for all } g \in G\}$ is called the quotient group.
@@ -245,6 +281,51 @@
 		\newline
 		$(xN)(yN) = (xy)N, \forall x, y \in G$.
 	\end{theorem}
+\end{frame}
+
+\begin{frame}{Discrete logarithm problem in $\mathbb{Z}^*_n$}
+	\section{Discrete logarithm problem in $\mathbb{Z}^*_n$}
+	%since $\mathbb{Z}^*_n$ indeed forms a group, we can construct the discrete log problem
+	\begin{block}{}
+		For given $n \in \mathbb{N}_+$ the discrete logarithm problem in $\mathbb{Z}^*_n$ can be formulated the 
+		following way:
+	\end{block}
+	
+	\begin{block}{}
+		For any $a, b \in \mathbb{Z}^*_n$ find $x : a^x = b \mod n$. If such $x$ exists, it is called the discrete 
+		logarithm of $b$ with respect to base $a$.
+	\end{block}
+	
+	\begin{example}[DLP in $\mathbb{Z}^*_{13}$]
+		\begin{tabular}{>{\small}c>{\small}c>{\small}c}
+			$2^0 = 1$ & $2^4 = 3$ & $2^8 = 9$ \\
+			$2^1 = 2$ & $2^5 = 6$ & $2^9 = 5$ \\
+			$2^2 = 4$ & $2^6 = 12$ & $2^{10} = 10$ \\
+			$2^3 = 8$ & $2^7 = 11$ & $2^{11} = 7$
+		\end{tabular}
+	\end{example}
+	% on the whiteboard example when DLP does not have any solutions
+\end{frame}
+
+\begin{frame}{Homework}
+    \section{Homework}
+	Let $n, m \in \mathbb{N} \backslash \{0\} : (n, m) = 1$. \newline
+	Build a group isomorphism 
+	$\psi : \mathbb{Z} \to \mathbb{Z} / n \mathbb{Z} \times \mathbb{Z} / m \mathbb{Z}$
+\end{frame}
+
+\begin{frame}{Next lecture}
+    \section{Next lecture topic}
+	Next lecture will be devoted to essential cryptographical concepts such as public-key cryptography (finally!) as 
+	well as some information theoretical concepts. 
+\end{frame}
+
+\begin{frame}{Suggested topics to read}
+    \section{Suggested topics to read}
+    \begin{itemize}
+		\item Permutation groups, dihedral groups.
+		\item 
+	\end{itemize}    
 \end{frame}
 
 \end{document}
