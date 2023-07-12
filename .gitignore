@@ -8,3 +8,8 @@
 *.snm
 *.toc
 *.pdf
+*.bbl
+*.bcf
+*.blg
+*.dvi
+*.xml
