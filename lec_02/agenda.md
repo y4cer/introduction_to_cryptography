@@ -1,9 +1,6 @@
 # Basic abstract algebra with SageMath (cnt.)
 
-- Notion of semigroup, examples with words, strings in general
-- Notion of monoid, examples of monoids in $\mathbb{N^{+}}$
-- Introduction to groups, the Grothendieck group, proof of Fermat's little theorem using algebraic tools
-- Introduction to fields (just give definition and some examples)
+- Introduction to groups, proof of Fermat's little theorem using algebraic tools
 
 - Operations on groups that we will consider:
     - elementwise addition -> scalar multiplication
