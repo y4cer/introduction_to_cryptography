@@ -42,12 +42,14 @@
         \item Basic abstract algebra with SageMath (cnt.)
         \item Public key cryptography + concept of secure messaging % OTP
         \item Message integrity: secure hash functions and random numbers
-        \item Asymmetric cryptography: RSA and Rabin cryptosystems
         \item Asymmetric cryptography: DHKE with DLP some other key-exhange protocols 
-        \item Asymmetric cryptography: ECDHKE and TLS/SSL
-        \item Asymmetric cryptography: digital signatures, GOST and Bitcoin curves
-        \item Inroduction to symmetric cryptography: block ciphers
-        \item Inroduction to symmetric cryptography: stream ciphers
+        \item Asymmetric cryptography: RSA and Rabin cryptosystems
+        \item Asymmetric cryptography: Digital signatures: DSA
+        \item Asymmetric cryptography: Elliptic curves, EC~(DHKE|DSA)
+        \item Inroduction to symmetric cryptography: block \& stream ciphers
+        \item Post-Quantum cryptography: When something went (totally) wrong
+        \item Post-Quantum cryptography: Shor's algorithm
+        \item Post-Quantum cryptography: Brief intro to Post-Quantum cryptography algorithms
     \end{enumerate}
 \end{frame}
 
@@ -74,8 +76,9 @@
     \begin{center}
         \begin{minipage}{0.45\linewidth}
             \includegraphics[width=\linewidth]{fig/Al-kindi_cryptographic.png}
-            \captionof{figure}{The first page of al-Kindi's manuscript ''On Deciphering Cryptographic Messages'', 
-        containing the oldest known description of cryptanalysis by frequency analysis.}
+            \captionof{figure}{The first page of al-Kindi's manuscript ''On 
+            Deciphering Cryptographic Messages'', containing the oldest known
+            description of cryptanalysis by frequency analysis.}
         \end{minipage}
         \hfill
         \begin{minipage}{0.45\linewidth}
@@ -93,15 +96,16 @@
     \begin{center}
     \begin{minipage}{0.45\linewidth}
         \includegraphics[width=0.7\linewidth]{fig/220px-Diffie_and_Hellman.jpg}
-        \captionof{figure}{Whitfield Diffie and Martin Hellman, authors of the first published paper on public-key 
-        cryptography.}
+        \captionof{figure}{Whitfield Diffie and Martin Hellman, authors of the 
+            first published paper on public-key cryptography.}
     \end{minipage}
     \hfill
     \begin{minipage}{0.5\linewidth}
         \includegraphics[width=0.3\linewidth]{fig/Ronald_L_Rivest_photo.jpg}
         \includegraphics[width=0.33\linewidth]{fig/Adi_Shamir_Royal_Society.jpg}
         \includegraphics[width=0.33\linewidth]{fig/Len-mankin-pic.jpg}
-        \captionof{figure}{Ron Rivest, Adi Shamir and Leonard Adleman --- reinventors of RSA cryptosystem.}
+        \captionof{figure}{Ron Rivest, Adi Shamir and Leonard Adleman --- 
+            reinventors of RSA cryptosystem.}
     \end{minipage}
     \end{center}
 \end{frame}
@@ -122,7 +126,8 @@
     Selected topics in mathematics
     \begin{itemize}
         \item Abstract algebra (must have!)
-        \item Number theory (must have!) --- although we will only scratch the surface
+        \item Number theory (must have!) --- although we will only scratch the 
+            surface
         \item Probability theory
         \item Category theory
     \end{itemize}
@@ -134,20 +139,23 @@
 \begin{frame}{Basic Abstract Algebra}
     \section{Basic Abstract Algebra}
     \subsection{Preliminaries}
-    Sets (later we will define more rigorous terms) we are going to extensively use:
+    Sets (later we will define more rigorous terms) we are going to extensively 
+        use:
     \begin{itemize}
         \item $\mathbb{N}$, $\mathbb{Z}$
         \item $\mathbb{Z} / n\mathbb{Z}$ --- the set of integers modulo n
-        \item $\mathbb{Z} / n \mathbb{Z}^{*}$ --- important set that we will define and use later
+        \item $\mathbb{Z} / n \mathbb{Z}^{*}$ --- important set that we will 
+            define and use later
     \end{itemize} 
 \end{frame}
 
 \begin{frame}{Functions (mappings)}
     \subsection{Functions}
     \begin{definition}
-        A function from set $X$ (domain) to set $Y$ (co-domain) is an assignment of an element of $Y$ to each element
-        of $X$. A function is called to be 'well-defined' if and only if for each element from domain there exists 
-        exactly one element from co-domain.  
+        A function from set $X$ (domain) to set $Y$ (co-domain) is an assignment 
+            of an element of $Y$ to each element of $X$. A function is called to 
+            be 'well-defined' if and only if for each element from domain there 
+            exists exactly one element from co-domain.  
     \end{definition}
     \begin{example}
         An example of not well-defined function: \\
@@ -169,8 +177,8 @@
         \end{eqnarray*}
     \end{definition}
     \begin{definition}
-        Preimage of a function is a set of all values that produce the given outputs.
-        Formally
+        Preimage of a function is a set of all values that produce the given 
+        outputs. Formally
         \begin{equation*}
             \psi^{-1}[B] = \left\{x \in X : \psi(x) \in B \right\} = A
         \end{equation*}
@@ -207,7 +215,8 @@
                 & a, b \in \mathbb{Z} & \\
                 & a \mid b \iff \exists(!) c \in \mathbb{Z} : b = c \cdot c
         \end{eqnarray*}
-        (!) Only in $\mathbb{Z}$ and other PIDs (PIDs are not covered in this course) 
+        (!) Only in $\mathbb{Z}$ and other PIDs (PIDs are not covered in this 
+            course) 
     \end{definition}
     \begin{definition}
         An integer is called prime, iff it has only 2 divisors: 1 and itself
@@ -245,46 +254,64 @@
     \begin{example}
         $ 2^7 \equiv 2 \pmod 2, \quad -1^{13} \equiv 12 \pmod {13} $
     \end{example}
-    Proof: on the next lecture
+    % Proof: on the next lecture
 \end{frame}
 
 \begin{frame}{Euler's totient function and Euler's theorem}
     \subsection{Euler's totient function and Euler's theorem}
     \begin{definition}
-        $\varphi(n)$ --- The number of positive integers less than $n$ s.t. they are coprime.
-        Formally:
+        $\varphi(n)$ --- The number of positive integers less than $n$ s.t.\ they
+        are coprime. Formally:
         \begin{equation*}
             \varphi(n) = \# \left\{ x : (x, n) = 1 \right\}
         \end{equation*} 
     \end{definition}
     \begin{Theorem}[Euler's theorem]
         \begin{eqnarray*}
-            & a \in \mathbb{Z}, n \in \mathbb{Z}_{>0} \\
-            & a^{\varphi(n)} \equiv a \pmod n
+            & a \in \mathbb{Z}, n \in \mathbb{Z}_{>0}, (a, n) = 1 \\
+            & a^{\varphi(n)} \equiv 1 \pmod n
         \end{eqnarray*}
     \end{Theorem}
     In other words: it is more general version of Fermat's little theorem. \\
-    Both Euler's phi function and Euler's theorem are essential for understanding the RSA cryptosystem.
+    Both Euler's phi function and Euler's theorem are essential for 
+    understanding the RSA cryptosystem.
 \end{frame}
 
 \begin{frame}{Introduction to SageMath}
     \section{Introduction to SageMath}
     \begin{itemize}
-        \item Download and install SageMath from \\ \url{https://doc.sagemath.org/html/en/installation/index.html}
-        \item Or, alternatively, use \\ \url{https://sagecell.sagemath.org/} for online access.
+        \item Download and install SageMath from \\ 
+            \url{https://doc.sagemath.org/html/en/installation/index.html}
+        \item Or, alternatively, use \\ 
+            \url{https://sagecell.sagemath.org/} for online access.
     \end{itemize}
+\end{frame}
+
+\begin{frame}{SageMath}
+    \includegraphics[width=\linewidth]{fig/sagemath.png}
 \end{frame}
 
 \begin{frame}{Homework}
     \section{Homework}
-    Build an bijection $\varphi : \mathbb{Z} \to \mathbb{N}_{>0}$ and show that $\varphi$ is indeed a bijection. \\ 
-    Hint: show that $\varphi$ is the surjection and injection simultaneously.
+    \begin{itemize}
+        \item Build an bijection $\varphi : \mathbb{Z} \to \mathbb{N}_{>0}$ and 
+        show that $\varphi$ is indeed a bijection. \\ 
+        Hint: show that $\varphi$ is the surjection and injection simultaneously.
+        \item For each of the following equations, find $x$, such that:
+        \begin{eqnarray*}
+            4x \equiv 2 \bmod 3 \\
+            7x \equiv 4 \bmod 9 \\
+            5x \equiv 3 \bmod 11
+        \end{eqnarray*}
+        \item What is the smallest number that has exactly $k$ divisors?
+        Provide answers fow $1 \le k \le 8$
+    \end{itemize}
 \end{frame}
 
 \begin{frame}{Next lecture}
     \section{Next lecture topic}
-    On the next lecture we are going to dig deep into Abstract Algebra, and learn new mathematical objects, such as 
-    semigroups, monoids and groups, as well as prove the Fermat's \st{last} little theorem and Euler's theorem.
+    On the next lecture we are going to dig deeper into Abstract Algebra and 
+    learn new mathematical objects, such as groups and subgroups.
 \end{frame}
 
 \begin{frame}{Suggested topics to read}
