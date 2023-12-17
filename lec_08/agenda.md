@@ -1,10 +1,16 @@
-# Asymmetric cryptography: digital signatures, GOST and Bitcoin curves
+# Asymmetric cryptography: Elliptica curves, EC(DHKE|DSA)
 
-- Notion of signature
-- DSA
-- ECDSA, EdDSA
-- Recap on classification of cryptoprimitives
-- Post-quantum signature (Lamport-Diffie signature or WOTS, have not decided yet)
+
+- A long explanation on elliptic curves 
+    Sources:
+    - https://www.pdmi.ras.ru/~lowdimma/BSD/Silverman-Arithmetic_of_EC.pdf
+    - https://mathoverflow.net/questions/6870/why-is-an-elliptic-curve-a-group
+    - https://math.stackexchange.com/questions/5167/group-law-for-an-elliptic-curve#5176
+
+- Recap on DHP
+- Redefinition of DH[$\mathbb{F}_p$] to DH[$\mathbb{E}_p]
+
+- How does SSL/TLS work (handshake part only!)
 
 # HW
-Show the PoC of signature swap attack on DSA for the given implementation of DSA
+таска с цтф, где надо было похеком диффи хеллмана разрешить задачу (написать самому)

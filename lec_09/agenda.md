@@ -1,4 +1,4 @@
-# Inroduction to symmetric cryptography: block ciphers
+# Inroduction to symmetric cryptography: block & stream ciphers
 
 - What is block cipher
 - Examples of block ciphers
@@ -6,4 +6,4 @@
     - RC2
     - DES, 3DES
 
-- If we are left enough time, show cryptanalysis of RC2
+- If we are left enough time, show cryptanalysis of RC2 or FEAL4

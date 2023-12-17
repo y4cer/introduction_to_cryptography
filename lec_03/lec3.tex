@@ -77,10 +77,18 @@
     \subsection{Entropy}
     As it was said earlier, entropy is the measure of the information content. Claude Shannon defines entropy in the following way:
     \begin{equation}
-        H(\chi) = \sum_{x \in \chi}{p(x) \log p(x) = \mathbb{E}(- \log p(\chi))}
+        H(\chi) = -\sum_{x \in \chi}{p(x) \log p(x) = \mathbb{E}(- \log p(\chi))}
     \end{equation}
+    where $p(x)$ is the probability of event $x$.
 \end{frame}
 
+\begin{frame}{Basics of information theory}
+    \section{Basics of information theory}
+    \begin{theorem}[Source coding theorem]
+    $N$ independed and identically distributed variables each with random variables each with entropy $H(X)$ can be compressed into more than $NH(X)$ bits with negligible risk of information loss, as $N \to \infty$; but conversely, if they are compressed into fewer than $NH(X)$ bits it is virtually certain that information will be lost.
+    \end{theorem}
+\end{frame}
+% https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem
 \begin{frame}[shrink=30]{References}
 	\section*{References}
     \printbibliography
