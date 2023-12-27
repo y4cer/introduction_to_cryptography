@@ -11,8 +11,9 @@
 \usepackage{wrapfig}
 \usepackage{datetime}
 \usepackage{soul}
+\usepackage{bookmark}
 \usepackage[font=small,labelfont=bf]{caption}
-\usepackage[backend=biber, style=ieee]{biblatex}
+\usepackage{biblatex}
 
 \graphicspath{ {./fig} }
 
@@ -57,7 +58,8 @@
     A year later, Ronald Rivest, Adi Shamir and Leonard Adleman publish a paper \cite{rsa-1978}, which describes the algorithm, that
 	later received name ``RSA''. The proposed method for obtaining public-key cryptosystems is based on underlying problem of integer
     factorisation. For now, there is no evidence that the RSA cryptosystem is prone to polynomial-time attacks running on classical
-    computers.
+    computers, although there are many problems one could face constructing secure 
+    implementation of the RSA PKC (we will talk about that in a couple of lectures).
 \end{frame}
 
 \begin{frame}{Perfect secrecy}
@@ -68,27 +70,110 @@
         \end{center}
     \caption{Claude Shannon \\ (source: \href{https://wikipedia.org}{wikipedia.org})}
     \end{wrapfigure}
-    In 1948, he published the article `A Mathematical Theory of Communication' \cite{shannon-1948}, where he introduces the notion of entropy as a measure
+    In 1948, Claude Shannon published the article `A Mathematical Theory of Communication' \cite{shannon-1948}, where he introduces the notion of entropy as a measure
     of information content in a message. The higher the entropy, the higher the uncertainty of the next symbol in the message and vice
     versa.
 \end{frame}
 
 \begin{frame}{Entropy}
     \subsection{Entropy}
-    As it was said earlier, entropy is the measure of the information content. Claude Shannon defines entropy in the following way:
+    As it was said earlier, entropy (or uncertainty) is the measure of the information content. 
+    Claude Shannon defines entropy in the following way:
+\end{frame}
+
+\begin{frame}{Entropy}
+    \begin{definition}[Entropy]
+        Suppose we have a set of possible events whose probabilities of occurence are
+        $(p_1, p_2, \ldots, p_n)$. We want to derive an entropy measure $H$ on 
+        these probabilities. \\
+        ``If there is such measure $H$, it is reasonable to require of it the 
+        following properties:''
+        \begin{enumerate}
+            % entropy.pdf pages 10-11
+            \item $H$ should be continuous on $p_i$
+            \item If all $p_i$ are equal to $p_i = \frac{1}{n}$, then $H$ should
+            be a monotonic increasing function of $n$. With equally likely events
+            there is more choice, thus more uncertainty.
+        \end{enumerate} 
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Entropy cnt.}
+    \begin{definition}[Entropy cnt.]
+        \begin{enumerate}
+            \setcounter{enumi}{2}
+            \item  If a choice be broken down into two successive choices, the 
+            original $H$ should be the weighted sum of the individual values of $H$.
+            
+            \includegraphics[scale=0.3]{Third_property.png}
+            \captionof*{Figure}{In this particular case we require that
+            $H(\frac{1}{2}, \frac{1}{3}, \frac{1}{6}) = 
+            H(\frac{1}{2}, \frac{1}{2}) + \frac{1}{2} H(\frac{2}{3}, \frac{1}{3})$}
+        \end{enumerate}
+    \end{definition}
+
+\end{frame}
+
+\begin{frame}{Entropy cnt.}
+    From the restrictions above, Shannon concluded that the only function,
+    which satisfies all of the properties is the following:
+    
     \begin{equation}
         H(\chi) = -\sum_{x \in \chi}{p(x) \log p(x) = \mathbb{E}(- \log p(\chi))}
     \end{equation}
     where $p(x)$ is the probability of event $x$.
+
 \end{frame}
 
+% https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem
 \begin{frame}{Basics of information theory}
     \section{Basics of information theory}
     \begin{theorem}[Source coding theorem]
-    $N$ independed and identically distributed variables each with random variables each with entropy $H(X)$ can be compressed into more than $NH(X)$ bits with negligible risk of information loss, as $N \to \infty$; but conversely, if they are compressed into fewer than $NH(X)$ bits it is virtually certain that information will be lost.
+    $N$ independed and identically distributed variables each with random 
+    variables each with entropy $H(X)$ can be compressed into more than $NH(X)$ 
+    bits with negligible risk of information loss, as $N \to \infty$; but 
+    conversely, if they are compressed into fewer than $NH(X)$ bits it is 
+    virtually certain that information will be lost.
     \end{theorem}
 \end{frame}
-% https://en.wikipedia.org/wiki/Shannon%27s_source_coding_theorem
+
+\begin{frame}{Formal definition of PKC}
+    \section{Formal definition of Public Key Cryptography}
+    Public Key Cryptography consists of the public key, private key, 
+    the encryption algorithm and the decryption algorithm. Let us see how these 
+    things interact with each other.
+\end{frame}
+
+\begin{frame}{Formal definition of PKC}
+    \textbf{NB: This definition is taken from ``Mathematics of Public Key Cryptography, Section 1.3''} 
+    \begin{definition}[Public Key Cryptography]
+        Let $\kappa$ be the security parameter of the cryptosystem. (note that 
+        $\kappa$ is not necessarily the key length) An encryption scheme is then 
+        defined by the following spaces (all depending on the security parameter 
+        $\kappa$):
+        \begin{itemize}
+            \item $M_\kappa$ --- Space of all possible messages
+            \item $PK_\kappa$ --- Space of all public keys
+            \item $SK_\kappa$ --- Space of all secret keys
+            \item $C_\kappa$ --- Space of all ciphertexts
+            \item $KeyGen$ --- \textbf{Randomized} algorithm that takes $\kappa$ as input and generates
+            public and private key in polynomial time. 
+            \item $Encrypt : M_\kappa \times PK_\kappa \to C_\kappa$ 
+            \item $Decrypt : C_\kappa \times SK_\kappa \to M_\kappa$
+        \end{itemize}
+    \end{definition}
+\end{frame}
+
+% \begin{frame}{Constraint on $Encrypt$ and $Decrypt$}
+%     So, what is the most reasonable constraint that we can propose for the 
+%     $Encrypt$ and $Decrypt$ algorithms?
+%     \pause
+%     \begin{eqnarray*}
+%         m \in M_\kappa, pk \in PK_\kappa \\ 
+%         sk \in SK_\kappa, Decrypt(Encrypt(m, pk), sk) = m
+%     \end{eqnarray*}
+% \end{frame}
+
 \begin{frame}[shrink=30]{References}
 	\section*{References}
     \printbibliography
