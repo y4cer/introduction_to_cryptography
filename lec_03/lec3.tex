@@ -8,12 +8,10 @@
 \usepackage{geometry}
 \usepackage{graphicx}
 \usepackage{eucal}
+\usepackage{cite}
 \usepackage{wrapfig}
 \usepackage{datetime}
-\usepackage{soul}
-\usepackage{bookmark}
 \usepackage[font=small,labelfont=bf]{caption}
-\usepackage{biblatex}
 
 \graphicspath{ {./fig} }
 
@@ -23,8 +21,6 @@
 
 \newdateformat{monthYear}{\monthname[\THEMONTH] \THEYEAR}
 \date{\monthYear\today}
-
-\addbibresource{./refs.bib}
 
 \DeclareCaptionFormat{custom}
 {%
@@ -164,19 +160,21 @@
     \end{definition}
 \end{frame}
 
-% \begin{frame}{Constraint on $Encrypt$ and $Decrypt$}
-%     So, what is the most reasonable constraint that we can propose for the 
-%     $Encrypt$ and $Decrypt$ algorithms?
-%     \pause
-%     \begin{eqnarray*}
-%         m \in M_\kappa, pk \in PK_\kappa \\ 
-%         sk \in SK_\kappa, Decrypt(Encrypt(m, pk), sk) = m
-%     \end{eqnarray*}
-% \end{frame}
+\begin{frame}{Constraint on $Encrypt$ and $Decrypt$}
+    So, what is the most reasonable constraint that we can propose for the 
+    $Encrypt$ and $Decrypt$ algorithms?
+    \pause
+    \begin{eqnarray*}
+        m \in M_\kappa, pk \in PK_\kappa \\ 
+        sk \in SK_\kappa, Decrypt(Encrypt(m, pk), sk) = m
+    \end{eqnarray*}
+\end{frame}
 
-\begin{frame}[shrink=30]{References}
+\begin{frame}{References}
 	\section*{References}
-    \printbibliography
+    \fontsize{6}{7.2}\selectfont
+	\bibliography{refs}
+	\bibliographystyle{ieeetr}
 \end{frame}
 
 \end{document}
