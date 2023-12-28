@@ -1,6 +1,5 @@
 # Asymmetric cryptography: Elliptica curves, EC(DHKE|DSA)
 
-
 - A long explanation on elliptic curves 
     Sources:
     - https://www.pdmi.ras.ru/~lowdimma/BSD/Silverman-Arithmetic_of_EC.pdf

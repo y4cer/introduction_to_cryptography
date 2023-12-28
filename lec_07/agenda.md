@@ -8,3 +8,7 @@
 - How does the DSA work?
 - How does the Lamport signature work?
 - How does the Schnorr signature work?
+
+# HW
+https://cryptohack.org/challenges/rsa/
+Порешать отсюда задачи (starter), некоторые разобрать на след занят(ии/ях)

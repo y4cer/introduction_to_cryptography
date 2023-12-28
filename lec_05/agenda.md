@@ -20,4 +20,5 @@
 - Textbook Rabin cryptosystem
 
 # HW
-взять что-нибудь на cryptohack
+https://cryptohack.org/challenges/rsa/
+Порешать отсюда задачи (starter), некоторые разобрать на след занят(ии/ях)

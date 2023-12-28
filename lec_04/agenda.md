@@ -11,4 +11,4 @@
     - Hash functions with Sponge construction # in detail
 
 # HW
-взять что-нибудь на cryptohack
+Дать на подумать ту хэш функцию с кубка

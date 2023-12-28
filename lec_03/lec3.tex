@@ -14,6 +14,7 @@
 \usepackage[font=small,labelfont=bf]{caption}
 
 \graphicspath{ {./fig} }
+\setbeamertemplate{bibliography item}{\insertbiblabel}
 
 \title{Public key cryptography + concept of secure messaging}
 \subtitle{Basic abstract algebra with SageMath (cnt.)}
@@ -53,7 +54,11 @@
     \section{A method for obtaining digital signatures and public-key cryptosystems}
     A year later, Ronald Rivest, Adi Shamir and Leonard Adleman publish a paper \cite{rsa-1978}, which describes the algorithm, that
 	later received name ``RSA''. The proposed method for obtaining public-key cryptosystems is based on underlying problem of integer
-    factorisation. For now, there is no evidence that the RSA cryptosystem is prone to polynomial-time attacks running on classical
+    factorisation. 
+\end{frame}
+
+\begin{frame}{A method for obtaining digital signatures and public-key cryptosystems}
+    For now, there is no evidence that the RSA cryptosystem is prone to polynomial-time attacks running on classical
     computers, although there are many problems one could face constructing secure 
     implementation of the RSA PKC (we will talk about that in a couple of lectures).
 \end{frame}
@@ -141,8 +146,7 @@
 \end{frame}
 
 \begin{frame}{Formal definition of PKC}
-    \textbf{NB: This definition is taken from ``Mathematics of Public Key Cryptography, Section 1.3''} 
-    \begin{definition}[Public Key Cryptography]
+    \begin{definition}[Public Key Cryptography\cite{galbraith_2012}]
         Let $\kappa$ be the security parameter of the cryptosystem. (note that 
         $\kappa$ is not necessarily the key length) An encryption scheme is then 
         defined by the following spaces (all depending on the security parameter 
@@ -164,15 +168,78 @@
     So, what is the most reasonable constraint that we can propose for the 
     $Encrypt$ and $Decrypt$ algorithms?
     \pause
-    \begin{eqnarray*}
-        m \in M_\kappa, pk \in PK_\kappa \\ 
-        sk \in SK_\kappa, Decrypt(Encrypt(m, pk), sk) = m
-    \end{eqnarray*}
+    \begin{flalign*}
+        & m \in M_\kappa, pk \in PK_\kappa, sk \in SK_\kappa \\ 
+        & Decrypt(Encrypt(m, pk), sk) = m
+    \end{flalign*}
 \end{frame}
 
-\begin{frame}{References}
+\begin{frame}{Trapdoor function}
+    \section{Trapdoor function}
+    \begin{definition}[Trapdoor function]
+        The trapdoor function is such function that is easy to compute in one 
+        way, but very hard (infeasible) to compute in other way in reasonable
+        amount of time, computing resourses and manpower.
+    \end{definition}
+
+    \begin{example}
+        \begin{itemize}
+            \item Discrete Logarithm Problem (DLP) modulo $p$, where $p$ is large prime
+            \item As generalization, DLP in large finite fields, where it is hard 
+            to solve the DLP
+            \item Shortest Vector Problem --- way to find the shortest vector 
+            in the lattice
+            \item Integer factorisation problem
+            \item Syndrome decoding problem 
+            \item Knapsack problem 
+            \item etc.
+        \end{itemize}    
+    \end{example}
+\end{frame}
+
+\begin{frame}{Cryptographic primitives}
+    \section{Cryptographic primitives}
+    \begin{definition}
+        Cryptographic primitive are well known cryptographic algorithms which 
+        are used to build (cryptographic) protocols, e.g. 
+        \begin{itemize}
+            \item One way hash function
+            \item Digital signature scheme 
+            \item Symmetric key cryptography
+            \item Public key cryptography
+            \item etc.
+        \end{itemize}
+    \end{definition}
+\end{frame}
+
+\begin{frame}{Classification of cryptographic primitives}
+    \subsection{Classification}
+    As it was described in \cite{gagliardoni2017quantum}, one can divide 
+    cryptographic primitives in the following categories:
+    \begin{enumerate}
+        \item QS0: Classical Security
+        \item QS1: Post-Quantum Security
+        \item QS2: Quantum (Superposition-Based) Security
+        \item QS3: Fully Quantum Security
+    \end{enumerate}
+    We are interested only in the first two categories.
+\end{frame}
+
+\begin{frame}{How can we use cryptographic primitives?}
+    \section{Usage of cryptographic primitives}
+    \begin{example}
+        As I mentioned earlier, in~\cite{diffie-hellman:1976} Diffie and Hellman
+        proposed new key exchange protocol, we will dive deep into Diffie-Hellman 
+        Key Exchange in lecture 5 (I hope).
+    \end{example}
+\end{frame}
+
+\begin{frame}
+    Its Jupyter Notebook time!
+\end{frame}
+
+\begin{frame}[allowframebreaks]{References}
 	\section*{References}
-    \fontsize{6}{7.2}\selectfont
 	\bibliography{refs}
 	\bibliographystyle{ieeetr}
 \end{frame}

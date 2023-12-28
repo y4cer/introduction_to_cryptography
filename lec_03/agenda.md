@@ -16,7 +16,7 @@
 - Formal definition of public key cryptography
 - Concept of trapdoor function, concept of underlying mathematical problem (e.g. RSA, DH, SVP ...)
 - Classification of cryptographic primitives by type (classical, quantum, post-quantum)
-- Example of establishing secure communication (DH) then using AES -> lecture 7
+- Example of establishing secure communication (DH) then using AES -> lecture 4
 - Example of signing messages with HMAC
     - Example of blockchain as a reference to signing and asymmetric key cryptography in general 
 - Data representation in Python. Since we will work much in Python, we want to 
@@ -24,3 +24,4 @@ know how to represent some things in Python, i.e. bytes, strings, and others.
 
 # HW
 Прогнать через базу38, 52, 64 и через энкодинг сообщение какое-нибудь и сказать раздекодить
+Сделать мб что-то с DH, простенькое

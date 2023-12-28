@@ -35,3 +35,6 @@
 
 - 2DH key exchange
 - SIG DH key exchange
+
+# HW
+Посмотреть на cryptohack https://cryptohack.org/challenges/diffie-hellman/
