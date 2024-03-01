@@ -38,71 +38,115 @@
 	\tableofcontents
 \end{frame}
 
-% \begin{frame}{Semigroup}
-%     \section{Algebraic structures}
-% 	\subsection{Semigroup}
-% 	\begin{definition}
-% 		A semigroup $S$ is a set $\mathcal{S}$ together with binary operation $+$ that satisfy the following property:
-% 		\begin{itemize}
-% 			\item $S$ is closed under $+$, i.e. for all $a, b \in S$ \\
-% 				$a + b \in S$
-% 			\item Associativity, i.e. for all $a, b, c \in S$ \\
-% 				$(a + b) + c = a + (b + c)$
-% 		\end{itemize} 
-% 	\end{definition}
+\begin{frame}{Semigroup}
+    \section{Algebraic structures}
+	\subsection{Semigroup}
+	\begin{definition}
+		A semigroup $S$ is a set $\mathcal{S}$ together with binary operation $+$ that satisfy the following property:
+		\begin{itemize}
+			\item $S$ is closed under $+$, i.e. for all $a, b \in S$ \\
+				$a + b \in S$
+			\item Associativity, i.e. for all $a, b, c \in S$ \\
+				$(a + b) + c = a + (b + c)$
+		\end{itemize} 
+	\end{definition}
 
-% 	\begin{example}
-% 		\begin{itemize}
-% 			\item Empty semigroup $S = (\{\}, +)$
-% 			\item Semigroup with exactly 1 element. $S = (\{a\}, \cdot)$, where $a \cdot a = a$
-% 			\item Binary strings (strings in general). $S = (\{0, 1\}^*, +)$.
-% 			\item Natural numbers under addition. $S = (\mathbb{N}, +)$
-% 		\end{itemize}
-% 	\end{example}
-% \end{frame}
+	\begin{example}
+		\begin{itemize}
+			\item Empty semigroup $S = (\{\}, +)$
+			\item Semigroup with exactly 1 element. $S = (\{a\}, \cdot)$, where $a \cdot a = a$
+			\item Binary strings (strings in general). $S = (\{0, 1\}^*, +)$.
+			\item Natural numbers under addition. $S = (\mathbb{N}, +)$
+		\end{itemize}
+	\end{example}
+\end{frame}
 
-% \begin{frame}{Monoid}
-% 	\subsection{Monoid}
-% 	% It is important that the identity is defined as two-sided.
-% 	\begin{definition}
-% 		A monoid $M$ is a semigroup $S$, which satisfies additional property:
-% 		\begin{itemize}
-% 			\item $\exists \varepsilon \in M : a + \varepsilon = \varepsilon + a = a$
-% 		\end{itemize}
-% 	\end{definition}
+\begin{frame}{Monoid}
+	\subsection{Monoid}
+	% It is important that the identity is defined as two-sided.
+	\begin{definition}
+		A monoid $M$ is a semigroup $S$, which satisfies additional property:
+		\begin{itemize}
+			\item $\exists \varepsilon \in M : a + \varepsilon = \varepsilon + a = a$
+		\end{itemize}
+	\end{definition}
 
-% 	\begin{example}
-% 		\begin{itemize}
-% 			\item Natural numbers under multiplication (identity is $1$). $M = (\mathbb{N}, \cdot)$.
-% 			\item Natural numbers under addition (identity is $0$). $M = (\mathbb{N}, +)$.
-% 			\item Binary strings (identity is an empty string). $S = (\{0, 1\}^*, +)$.
-% 		\end{itemize}
-% 	\end{example}
-% \end{frame}
+	\begin{example}
+		\begin{itemize}
+			\item Natural numbers under multiplication (identity is $1$). $M = (\mathbb{N}, \cdot)$.
+			\item Natural numbers under addition (identity is $0$). $M = (\mathbb{N}, +)$.
+			\item Binary strings (identity is an empty string). $S = (\{0, 1\}^*, +)$.
+		\end{itemize}
+	\end{example}
+\end{frame}
 
-% \begin{frame}{Monoid morphisms}
-% 	\subsection{Monoid morphisms}
-% 	\begin{definition}
-% 		Monoid homomorphism is a structure preserving map $\varphi : (M, +) \to (L, \star)$, such that for all 
-% 		$m, n \in M$ the following holds: $\varphi(m + n) = \varphi(m) \star \varphi(n)$
-% 	\end{definition}
-% \end{frame}
+\begin{frame}{Monoid morphisms}
+	\subsection{Monoid morphisms}
+	\begin{definition}
+		Monoid homomorphism is a structure preserving map $\varphi : (M, +) \to (L, \star)$, such that for all 
+		$m, n \in M$ the following holds: $\varphi(m + n) = \varphi(m) \star \varphi(n)$
+	\end{definition}
+\end{frame}
 
-% \begin{frame}
-% 	\begin{definition}[Monomorphism]
-% 		A group homomorphism that is injective (or, one-to-one); i.e., preserves distinctness.
-% 	\end{definition}
-% 	\begin{definition}[Epimorphism]
-% 		A group homomorphism that is surjective (or, onto); i.e., reaches every point in the codomain.		
-% 	\end{definition}
-% 	\begin{definition}[Isomorphism]
-% 		A group homomorphism that is bijective; i.e., injective and surjective. Its inverse is also a group 
-% 		homomorphism.	
-% 	\end{definition}
-% 	\begin{definition}[Endomorphism]
-% 		A group homomorphism, $h: G \to G$; the domain and codomain are the same. Also called an endomorphism of $G$.		
-% 	\end{definition}
-% \end{frame}
+\begin{frame}
+	\begin{definition}[Monomorphism]
+		A group homomorphism that is injective (or, one-to-one); i.e., preserves distinctness.
+	\end{definition}
+	\begin{definition}[Epimorphism]
+		A group homomorphism that is surjective (or, onto); i.e., reaches every point in the codomain.		
+	\end{definition}
+	\begin{definition}[Isomorphism]
+		A group homomorphism that is bijective; i.e., injective and surjective. Its inverse is also a group 
+		homomorphism.	
+	\end{definition}
+	\begin{definition}[Endomorphism]
+		A group homomorphism, $h: G \to G$; the domain and codomain are the same. Also called an endomorphism of $G$.		
+	\end{definition}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Homework solutions}
+    \section{Homework}
+    \begin{itemize}
+        \item Build an bijection $\varphi : \mathbb{Z} \to \mathbb{N}_{>0}$ and 
+        show that $\varphi$ is indeed a bijection. \\ 
+        Hint: show that $\varphi$ is the surjection and injection simultaneously.
+		\newpage
+        \begin{solution}
+			Suppose we have $f : \mathbb{Z} \to \mathbb{N}_{>0}$.
+			\begin{flalign*}
+				\begin{cases}
+					f(n) = 2n, \quad n > 0,\\
+					f(n) = -2n + 1, \quad n \le 0
+				\end{cases}
+			\end{flalign*}
+		To prove that this mapping is indeed the bijection, we need to show 
+		that $f$ is injective and surjective at the same time. \\
+		\begin{itemize}
+			\item Injection is obvious, since for each positive $n \in \mathbb{Z}$
+			we have an even number, and for negative - odd.
+			\item Surjection: each even natural number has its own integer that 
+			produced it by the formula: $z: \mathbb{Z} = \frac{n}{2}, n \in \mathbb{N}$
+			Each odd natural number gives the corresponding integer this way:
+			$z: \mathbb{Z} = -\frac{n - 1}{2}, n \in \mathbb{N}$
+		\end{itemize}
+		\end{solution}
+		
+		\item What is the smallest number that has exactly $k$ divisors?
+        Provide answers for $1 \le k \le 8$
+
+		\begin{solution}[Outline]
+			By the fundamental theorem of arithmetic, each integer greater than 
+			$1$ can be represented uniquely is a product of primes in the form:
+			\begin{equation}
+				n = p_1^{\alpha_1} \cdot p_2^{\alpha_2} \cdots p_k^{\alpha_k}
+			\end{equation}
+			This way, each number has exactly $\rho$ divisors, where $\rho$ is:
+			\begin{equation}
+				\rho = (\alpha_1 + 1) \cdot (\alpha_2 + 1) \cdots (\alpha_k + 1)
+			\end{equation}
+		\end{solution}
+    \end{itemize}
+\end{frame}
 
 \begin{frame}{Group}
 	\section{Group}
@@ -189,13 +233,12 @@
 	\end{definition}
 	\begin{definition}[subgroups generated by subsets]
 		$A$ is a subset of $G$.
-
-		$\overline{A} = \{a_1^{\epsilon_1},\ldots, a_n^{\epsilon_n}\ \vert\ n \in \mathbb{Z}$ and $a_i \in A,\ 
-		\epsilon_i = \pm 1$ for each $i \}$
-		
-		$\overline{A} = \langle A \rangle$ 
+		$\langle A \rangle$ is a group generated by a subset $A$, thus every 
+		element of $\langle A \rangle$ can be expressed as a combination under 
+		$\cdot_G$ of finitely many elements of the subset and their inverses.
+		 
 	\end{definition}
-	$\langle A \rangle \le G$
+	
 	\begin{example}
 		$G = \mathbb{Z}, H = (\langle 2 \rangle, +)$
 	\end{example}
@@ -204,24 +247,24 @@
 	\end{definition}
 \end{frame}
 
-% \begin{frame}{Normal subgroups}
-% 	\subsubsection*{Normal subgroups}
-% 	\begin{definition}
-% 		A subgroup $N$ of $G$ is called normal if and only if it is invariant under conjugation. \newline
-% 		$N \unlhd G$ \newline
-% 		$g n g^{-1} \in N$ for all $g \in G$, or equivalently \newline 
-% 		$g N g^{-1} = N$ for all $g \in G$.
-% 	\end{definition}
-% 	\begin{prop}
-% 		All subgroups of abelian groups are normal.
-% 	\end{prop}
-% 	\begin{example}
-% 		\begin{itemize}
-% 			\item $G$ - any group, $N = \{\varepsilon\}$
-% 			\item $G = \mathbb{Z}, N = n\mathbb{Z}$
-% 		\end{itemize}
-% 	\end{example}
-% \end{frame}
+\begin{frame}{Normal subgroups}
+	\subsubsection*{Normal subgroups}
+	\begin{definition}
+		A subgroup $N$ of $G$ is called normal if and only if it is invariant under conjugation. \newline
+		$N \unlhd G$ \newline
+		$g n g^{-1} \in N$ for all $g \in G$, or equivalently \newline 
+		$g N g^{-1} = N$ for all $g \in G$.
+	\end{definition}
+	\begin{prop}
+		All subgroups of abelian groups are normal.
+	\end{prop}
+	\begin{example}
+		\begin{itemize}
+			\item $G$ - any group, $N = \{\varepsilon\}$
+			\item $G = \mathbb{Z}, N = n\mathbb{Z}$
+		\end{itemize}
+	\end{example}
+\end{frame}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -246,105 +289,105 @@
 \end{frame}
 
 % https://en.wikipedia.org/wiki/Coset
-% \begin{frame}{Proof of Lagrange's theorem}
-% 	\begin{proof}[Proof (Lagrange's theorem)]
-% 		\begin{enumerate}
-% 			\item Any two left cosets have the same cardinality
-% 			\begin{proof}[Proof (1)]
-% 				Suppose there exists coset $aH, a \in G$, one can define bijection $h \mapsto ah, h \in H$.
-% 			\end{proof}
-% 			\item $a, b \in G$, and $aH$ and $bH$ are cosets. If $aH$ and $bH$ share at least 1 element, they coincide
-% 			\begin{proof}[Proof (2)]
-% 			Suppose there exists a shared element $ax = by, x,y \in H$, then $a = byx^{-1}$, but $yx^{-1} \in H$, hence
-% 			$aH = byx^{-1}H = bH$
-% 			\end{proof}
-% 		\end{enumerate}
-% 		Hence we conclude that $G$ is the disjoint union of its left cosets of $H$ and each left coset has the same 
-% 		cardinality. \newline
-% 		$\Rightarrow \# H \mid \# G$
-% 	\end{proof}
-% \end{frame}
+\begin{frame}{Proof of Lagrange's theorem}
+	\begin{proof}[Proof (Lagrange's theorem)]
+		\begin{enumerate}
+			\item Any two left cosets have the same cardinality
+			\begin{proof}[Proof (1)]
+				Suppose there exists coset $aH, a \in G$, one can define bijection $h \mapsto ah, h \in H$.
+			\end{proof}
+			\item $a, b \in G$, and $aH$ and $bH$ are cosets. If $aH$ and $bH$ share at least 1 element, they coincide
+			\begin{proof}[Proof (2)]
+			Suppose there exists a shared element $ax = by, x,y \in H$, then $a = byx^{-1}$, but $yx^{-1} \in H$, hence
+			$aH = byx^{-1}H = bH$
+			\end{proof}
+		\end{enumerate}
+		Hence we conclude that $G$ is the disjoint union of its left cosets of $H$ and each left coset has the same 
+		cardinality. \newline
+		$\Rightarrow \# H \mid \# G$
+	\end{proof}
+\end{frame}
 
-% \begin{frame}{Euler's theorem}
-% 	\section{Euler's theorem}
-% 	\begin{Theorem}[Euler's theorem]
-% 		\begin{align*}
-% 			& a \in \mathbb{Z}, n \in \mathbb{Z}_{>0}, (a, n) = 1 \\
-% 			& a^{\varphi(n)} \equiv a \pmod n, \text{ where } \\
-% 			& \varphi(n) = \# \mathbb{Z} / n \mathbb{Z}^*
-% 		\end{align*}
-%     \end{Theorem}
-% 	First, let us look at the set $\mathbb{Z} / n \mathbb{Z}^*$. It is a multiplicative group modulo $n$, i.e. 
-% 	each element of group $\mathbb{Z} / n \mathbb{Z}^* = \left\{ x : (x, n) = 1 \right\}$ has an inverse modulo $n$.
-% \end{frame}
+\begin{frame}{Euler's theorem}
+	\section{Euler's theorem}
+	\begin{Theorem}[Euler's theorem]
+		\begin{align*}
+			& a \in \mathbb{Z}, n \in \mathbb{Z}_{>0}, (a, n) = 1 \\
+			& a^{\varphi(n)} \equiv a \pmod n, \text{ where } \\
+			& \varphi(n) = \# \mathbb{Z} / n \mathbb{Z}^*
+		\end{align*}
+    \end{Theorem}
+	First, let us look at the set $\mathbb{Z} / n \mathbb{Z}^*$. It is a multiplicative group modulo $n$, i.e. 
+	each element of group $\mathbb{Z} / n \mathbb{Z}^* = \left\{ x : (x, n) = 1 \right\}$ has an inverse modulo $n$.
+\end{frame}
 
-% \begin{frame}{Proof of Euler's theorem}
-% 	\begin{proof}[Proof (Euler's theorem)]
-% 		If $a$ is coprime to $n$, then it must be in some residue class of $n$. Then 
-% 		$\langle a \rangle \le \mathbb{Z} / n \mathbb{Z}^*$. \newline
-% 		By Lagrange's theorem, $k = \#\langle a \rangle \ | \ \#\mathbb{Z} / n \mathbb{Z}^* \Rightarrow \varphi = kM$. 
-% 		\newline
-% 		Then, $a^{\varphi(n)} = a^{kM} = (a^{k})^M = 1^M \equiv 1 \pmod n$ 
-% 	\end{proof}
-% 	\begin{proof}[Proof (Fermat's little theorem)]
-% 		And Fermat's little theorem is just a particular case of Euler's theorem. \newline
-% 		$a ^ {p - 1} = a ^ {\varphi(p)} \equiv 1 \pmod p$, where $\varphi(p) = p - 1$ 
-% 	\end{proof}
-% \end{frame}
+\begin{frame}{Proof of Euler's theorem}
+	\begin{proof}[Proof (Euler's theorem)]
+		If $a$ is coprime to $n$, then it must be in some residue class of $n$. Then 
+		$\langle a \rangle \le \mathbb{Z} / n \mathbb{Z}^*$. \newline
+		By Lagrange's theorem, $k = \#\langle a \rangle \ | \ \#\mathbb{Z} / n \mathbb{Z}^* \Rightarrow \varphi = kM$. 
+		\newline
+		Then, $a^{\varphi(n)} = a^{kM} = (a^{k})^M = 1^M \equiv 1 \pmod n$ 
+	\end{proof}
+	\begin{proof}[Proof (Fermat's little theorem)]
+		And Fermat's little theorem is just a particular case of Euler's theorem. \newline
+		$a ^ {p - 1} = a ^ {\varphi(p)} \equiv 1 \pmod p$, where $\varphi(p) = p - 1$ 
+	\end{proof}
+\end{frame}
 
-% \begin{frame}{Quotient groups (proof is left as an optional exercise)}
-% 	\section{Quotient groups}
-% 	\begin{definition}ement $g \in G$ and a normal subgroup $N$ of $G$, one can define $G / N$ the set of 
-% 		all cosets of $N$ in $G$. That is: $G / N = \{ gN, \text{for all } g \in G\}$ is called the quotient group.
-% 	\end{definition}
+\begin{frame}{Quotient groups (proof is left as an optional exercise)}
+	\section{Quotient groups}
+	\begin{definition}ement $g \in G$ and a normal subgroup $N$ of $G$, one can define $G / N$ the set of 
+		all cosets of $N$ in $G$. That is: $G / N = \{ gN, \text{for all } g \in G\}$ is called the quotient group.
+	\end{definition}
 
-% 	\begin{theorem}
-% 		If $N \unlhd G$ then $Q = N/G$ forms a group known as a quotient group with the following group operation: 
-% 		\newline
-% 		$(xN)(yN) = (xy)N, \forall x, y \in G$.
-% 	\end{theorem}
-% \end{frame}
+	\begin{theorem}
+		If $N \unlhd G$ then $Q = N/G$ forms a group known as a quotient group with the following group operation: 
+		\newline
+		$(xN)(yN) = (xy)N, \forall x, y \in G$.
+	\end{theorem}
+\end{frame}
 
-% \begin{frame}{Rings and fields}
-% 	\section{Rings and fields}
-% 	\subsection{Ring}
-% 	\begin{definition}[Ring]
-% 		Ring $R$ is the set $S$ equipped with 2 binary operations: $+$ and 
-% 		$\star$, which satisfy the following properties:
-% 		\begin{itemize}
-% 			\item ($S$, $+$) is an abelian group
-% 			\item ($S$, $\star$) is monoid, i.e.\ satisfies the following 
-% 			properties:
-% 			\begin{itemize}
-% 				\item $\forall a, b, c \in S \quad (a \star b) \star c = a \star (b \star c)$
-% 				\item $\forall a \in S \quad \exists 1: 1 \star a = a = a \star 1$
-% 			\end{itemize}
-% 			\item distributive property: $\forall a, b, c \quad a \star (b + c) = a \star b + a \star c$ 
-% 		\end{itemize}
-% 	\end{definition}
+\begin{frame}{Rings and fields}
+	\section{Rings and fields}
+	\subsection{Ring}
+	\begin{definition}[Ring]
+		Ring $R$ is the set $S$ equipped with 2 binary operations: $+$ and 
+		$\star$, which satisfy the following properties:
+		\begin{itemize}
+			\item ($S$, $+$) is an abelian group
+			\item ($S$, $\star$) is monoid, i.e.\ satisfies the following 
+			properties:
+			\begin{itemize}
+				\item $\forall a, b, c \in S \quad (a \star b) \star c = a \star (b \star c)$
+				\item $\forall a \in S \quad \exists 1: 1 \star a = a = a \star 1$
+			\end{itemize}
+			\item distributive property: $\forall a, b, c \quad a \star (b + c) = a \star b + a \star c$ 
+		\end{itemize}
+	\end{definition}
 
-% 	\begin{example}
-% 		\begin{itemize}
-% 			\item $(\mathbb{Z}, +, \cdot)$
-% 			\item $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$
-% 		\end{itemize}
-% 	\end{example}
-% \end{frame}
+	\begin{example}
+		\begin{itemize}
+			\item $(\mathbb{Z}, +, \cdot)$
+			\item $(\mathbb{Z} / n \mathbb{Z}, +, \cdot)$
+		\end{itemize}
+	\end{example}
+\end{frame}
 
-% \begin{frame}{Rings and fields (cnt.)}
-% 	\subsection{Field}
-% 	\begin{definition}[field]
-% 		Field $F$ is the set $S$ with 2 binary operations, satisfying the 
-% 		following properties:
-% 		\begin{itemize}
-% 			\item $F$ is closed under $+$ and $\star$
-% 			\item Associativity
-% 			\item $\forall a \in F \exists a^{-1} \in F: a + a^{-1}_{+} = 0$ and $a \star a^{-1}_{\star} = 1$
-% 			\item $\exists \varepsilon \in M : a + \varepsilon = \varepsilon + a = a$
-% 			\item for all $a, b \in F\ a + b = b + a$, $ab = ba$
-% 		\end{itemize}
-% 	\end{definition}
-% \end{frame}
+\begin{frame}{Rings and fields (cnt.)}
+	\subsection{Field}
+	\begin{definition}[field]
+		Field $F$ is the set $S$ with 2 binary operations, satisfying the 
+		following properties:
+		\begin{itemize}
+			\item $F$ is closed under $+$ and $\star$
+			\item Associativity
+			\item $\forall a \in F \exists a^{-1} \in F: a + a^{-1}_{+} = 0$ and $a \star a^{-1}_{\star} = 1$
+			\item $\exists \varepsilon \in M : a + \varepsilon = \varepsilon + a = a$
+			\item for all $a, b \in F\ a + b = b + a$, $ab = ba$
+		\end{itemize}
+	\end{definition}
+\end{frame}
 
 \begin{frame}{}
 	\section{Sagemath examples}
@@ -356,10 +399,9 @@
 \begin{frame}{Homework}
     \section{Homework}
 	\begin{itemize}
-		\item s
-		Let $n, m \in \mathbb{N} \backslash \{0\} : (n, m) = 1$. \newline
-		Build a group isomorphism 
-		$\psi : \mathbb{Z} \to \mathbb{Z} / n \mathbb{Z} \times \mathbb{Z} / m \mathbb{Z}$
+		% \item Let $n, m \in \mathbb{N} \backslash \{0\} : (n, m) = 1$. \newline
+		% Build a group isomorphism 
+		% $\psi : \mathbb{Z} \to \mathbb{Z} / n \mathbb{Z} \times \mathbb{Z} / m \mathbb{Z}$
 		\item Prove that the matrices of the form:
 		$$\begin{pmatrix}
 			1 & x & y \\
