@@ -17,7 +17,7 @@
 \setbeamertemplate{bibliography item}{\insertbiblabel}
 
 \title{Message integrity: secure hash functions and random numbers}
-\author{Alexander Buchnev}
+\author{Alexanar Buchnev}
 
 \newdateformat{monthYear}{\monthname[\THEMONTH] \THEYEAR}
 \date{\monthYear\today}
@@ -47,14 +47,14 @@
 \begin{frame}{Hash functions}
     \section{What is the hash function?}
     \begin{definition}[Hash function]
-        Hash function (one way function, cryptographic hash function) is a 
-        special type of function, which maps the arbitrary sized messages to 
-        the fixed size values. 
+        Hash function (one way function, cryptographic hash function) is a
+        special type of function, which maps the arbitrary sized messages to
+        the fixed size values.
     \end{definition}
     \begin{example}[Simple examples of hash function]
         \begin{itemize}
             \item reduction modulo $n$
-            \item polynomial addition of string characters and then reduction 
+            \item polynomial addition of string characters and then reduction
             modulo $p$
             \item byte operations (most common)
             % \item hash functions built on top of encryption schemes
@@ -68,18 +68,18 @@
     What is the cryptographic hash function?
     \pause
     \begin{definition}[Cryptographic hash function]
-        Cryptographic hash function is a hash function which satisfies the 
+        Cryptographic hash function is a hash function which satisfies the
         following properties:
         \begin{itemize}
-            \item \textbf{Preimage resistance.} Given the hash value $h$ is must be 
+            \item \textbf{Preimage resistance.} Given the hash value $h$ is must be
             infeasible to find such message $m$ that hashes to $h$.
             \pause
-            \item \textbf{Second pre-image resistance.} Given an input $m1$ it 
-            must be infeasible to find different $m2$ such that it has the 
+            \item \textbf{Second pre-image resistance.} Given an input $m1$ it
+            must be infeasible to find different $m2$ such that it has the
             same hash value.
             \pause
-            \item \textbf{Collision resistance.} Given nothing other than the 
-            hash function itself, find 2 distinct inputs which will produce the 
+            \item \textbf{Collision resistance.} Given nothing other than the
+            hash function itself, find 2 distinct inputs which will produce the
             same hash value.
         \end{itemize}
     \end{definition}
@@ -87,22 +87,22 @@
 
 \begin{frame}{Other properties of hash functions\footnote{https://crypto.stackexchange.com/questions/55435/designing-a-hash-function-from-first-principles-rather-than-depending-on-heurist}}
     \begin{itemize}
-        \item \textbf{Strict avalanche criterion.} If you change any bit (or 
-        any sequence of bits), in the input, all bits in the output must have 
+        \item \textbf{Strict avalanche criterion.} If you change any bit (or
+        any sequence of bits), in the input, all bits in the output must have
         50\% change to change too.
         \pause
-        \item \textbf{Nonlinearity.} If the hash function is linear, one can 
-        create the system of the linear equations and just solve it for the 
+        \item \textbf{Nonlinearity.} If the hash function is linear, one can
+        create the system of the linear equations and just solve it for the
         arbitrary preimages. Take the already mentioned reduction modulo $n$
-        for example. Let us modify it a bit, so the resulting equation looks 
-        like this: $f(m) = a \cdot m + b \pmod n$. Then if we are given the 
-        hash value $f(m)$, we can easily construct the message by solving the 
-        equation: $m = a^{-1} \cdot (f(m) - b) \pmod n$. Although it is a toy 
-        example, one can come up with more hard, but linear one, which is prone 
+        for example. Let us modify it a bit, so the resulting equation looks
+        like this: $f(m) = a \cdot m + b \pmod n$. Then if we are given the
+        hash value $f(m)$, we can easily construct the message by solving the
+        equation: $m = a^{-1} \cdot (f(m) - b) \pmod n$. Although it is a toy
+        example, one can come up with more hard, but linear one, which is prone
         to this method.
         \pause
-        \item Another thing to consider is balance. You want your hash behave 
-        like the so called random oracle. 
+        \item \textbf{Another thing to consider is balance}. You want your hash behave
+        like the so called random oracle.
     \end{itemize}
 \end{frame}
 
@@ -110,7 +110,7 @@
 
 \begin{frame}{Applications of (cryptographic) hash functions}
     \begin{itemize}
-        \item Message integrity check 
+        \item Message integrity check
         \item Message authentification
         \item Hash Tables
         \item PoW (Proof of Work) blockchain networks
@@ -121,18 +121,18 @@
 \section{Cryptographic hash function cosntructions}
 
 \begin{frame}{How can one construct the hash function?}
-    Below I am going to talk about 2 constructions: Merkle-Damgård and the 
-    Sponge construction. I chose these two because SHA1 and SHA2 were the NIST 
-    standard functions that are based on the Merkle-Damgård construction, and 
-    the SHA3 finalist (Keccak) is based on the Sponge construction, which is 
-    completely different from the Merkle-Damgård and it is worth discussing 
+    Below I am going to talk about 2 constructions: Merkle-Damgård and the
+    Sponge construction. I chose these two because SHA1 and SHA2 were the NIST
+    standard functions that are based on the Merkle-Damgård construction, and
+    the SHA3 finalist (Keccak) is based on the Sponge construction, which is
+    completely different from the Merkle-Damgård and it is worth discussing
     therefore.
 \end{frame}
 
 \subsection{Merkle-Damgård construction}
 
 \begin{frame}{Merkle-Damgård construction}
-    Some of the most used hash functions are based on Merkle-Damgård 
+    Some of the most used hash functions are based on Merkle-Damgård
     construction:
     \begin{itemize}
         \item MD5
@@ -142,7 +142,7 @@
 
 \begin{frame}{Step-by-step description of the Merkle-Damgård construction}
     \begin{enumerate}
-        \item Pad the initial message with the appropriate padding scheme 
+        \item Pad the initial message with the appropriate padding scheme
         (in case of md5, it is 0x80 and a bunch of zeroes)
         \item Initialize the IV (input vector --- initial state)
         \item Process message in blocks
@@ -158,19 +158,20 @@
 \subsection{Sponge construction}
 
 \begin{frame}{Sponge construction}
-    \par According to final version of FIPS 202 where the SHA3 is descibed, 
-    SHA3 is the family of the functions on binary data. Each version of SHA-3 
+    \par According to final version of FIPS 202 where the SHA3 is descibed 
+    (2015, 7 years after the initial publication of the Keccak algorithm),
+    SHA3 is the family of the functions on binary data. Each version of SHA-3
     is based on the instance of the Keccak algorithm (family of the functions).
-    Keccak is based on the Sponge construction. 
+    Keccak is based on the Sponge construction.
     \newline \newline
     \pause
-    \par In Guido Bertoni and his team introduced the Sponge Construction. Simply 
-    said, sponge function can take a message of the arbitrary length and 
+    \par In 2008 Guido Bertoni and his team introduced the Sponge Construction. Simply
+    said, sponge function can take a message of the arbitrary length and
     produce the hash digest of the desired length.
     \newline \newline
     \pause
-    \par There are two phases of the Sponge function. First is called `absorbtion', 
-    when the message is fed into the hash function, the second is when we 
+    \par There are two phases of the Sponge function. First is called `absorbtion',
+    when the message is fed into the hash function, the second is when we
     `squeeze' the result.
 \end{frame}
 
@@ -182,14 +183,14 @@
         \item SHA3 standard specifies the $r+c$ is $1600$
         \item Input message is padded to the multiple of $r$
         \item Input message is split into the $n$ block with each of length $r$
-        \item For each input block we xor it with the current state of $r$, 
+        \item For each input block we xor it with the current state of $r$,
         then we apply \textbf{permutation function $f$} to the whole state
     \end{enumerate}
 \end{frame}
 
 \begin{frame}{Squeezing phase}
-    In the squeezing phase, we do the same operations, except for the input 
-    message part, i.e. we apply the \textbf{permutation function $f$} to the 
+    In the squeezing phase, we do the same operations, except for the input
+    message part, i.e. we apply the \textbf{permutation function $f$} to the
     state and get the first $r$ bits of the state as the message digest.
 \end{frame}
 
@@ -208,7 +209,7 @@
 
 \begin{frame}{Salt}
     \begin{definition}[Cryptographic salt]
-        Salt is a (random) piece of data which is appended to the message to 
+        Salt is a (random) piece of data which is appended to the message to
         create the different hash digest due to the strict avalanche criterion
         described above.
     \end{definition}
@@ -216,28 +217,89 @@
     What are the benefits of `salting the passwords?'
     \pause
     The main benefit is that the salting helps protecting against the `rainbow
-    table attacks', as well as protects passwords that occur multiple times in 
-    a database, as a new salt is used for each password. 
+    table attacks', as well as protects passwords that occur multiple times in
+    a database, as a new salt is used for each password.
 \end{frame}
 
 \section{Random number generators}
 
 \begin{frame}{PRNG}
     \begin{definition}[PRNG - PseudoRandom Number Generator]
-        \pause
-        PRNG is an algorithm which generates the sequence of numbers with 
-        properties approximate to the random numbers.
+        PRNG (also known as Determenistic Random Number Generator --- since 
+        everything is dependent on the initial \texttt{seed} value) is an 
+        algorithm which generates the sequence of numbers with properties 
+        approximate to the random numbers.
     \end{definition}
     \pause
     For now, there are no `perfect' PRNGs!!
 \end{frame}
 
 \begin{frame}{Ways to build the PRNG}
-    
+    \begin{itemize}
+        \item Use block or stream cipher
+        \item Use some hard mathematical assumption (e.g. Blum-Blum-Shub 
+        algorithm, see details below)
+        \item The Goldreich-Levin Theorem says that if you have perfect OWF, 
+        then you can build the PRNG, but this is not used much because of the 
+        speed issues
+        \item Use the external source of entropy (some system interrupts, disk
+        access timings, keyboard presses, etc.)
+        \item Reinvent the wheel!! (you can put a `clown' emoji here (: )
+    \end{itemize}
+\end{frame}
+
+\subsection{Blum-Blum-Shub algorithm}
+
+\begin{frame}{Blum-Blum-Shub PRNG}
+    The discription is rather simple in this case:
+    \begin{flalign*}
+        & x_{n+1} = x^2_n \pmod M,\\ 
+        & M = pq \\
+        & \text{seed is } x_0 : (x_0, M) = 1
+    \end{flalign*}
+    This PRNG is based on factorisation hardness assumption, like the RSA 
+    cryptosystem.
+\end{frame}
+
+\subsection{Linear Congruental Generator (LCG)}
+
+\begin{frame}{Linear Congruental Generator (LCG)}
+    This is an example of bad design of the cryptographic PRNG, we shall 
+    demonstrate its flaws on practice:
+
+    And again, the recursive definition is helping us:
+    \begin{definition}[LCG]
+        \begin{flalign*}
+            & x_{n+1} = a \cdot x_n + c \pmod m, \\
+            & a - \text{multiplier}, \\
+            & c - \text{increment}, \\ 
+            & m - \text{big prime, aka modulus}
+        \end{flalign*}
+    \end{definition}
+\end{frame}
+
+% TODO: add examples with runs
+
+\begin{frame}[allowframebreaks]{Why is this design bad for the cryptography?}
+    One can rearrange the terms in a fancy manner and obtain the formula for the 
+    $n+k$-th term, whre the $n$-th term is known:
+
+    \begin{flalign*}
+        & x_{n + k} \equiv a^k x_n +\frac{a^k - 1}{a - 1} c \pmod m \\
+        & a \ge 2,\ k \ge 0
+    \end{flalign*}
+
+    And, while you might think, that this is not an achievement, this formula 
+    gives us \textbf{any} term of the sequence given the initial values at the 
+    $O(\log(k))$ time and $O(1)$ space complexity. 
 \end{frame}
 
 \begin{frame}
     Its Jupyter Notebook time!
+\end{frame}
+
+\begin{frame}{Homework}
+    Implement the LCG and the corresponding attack that we have covered today
 \end{frame}
 
 % \begin{frame}[allowframebreaks]{References}
