@@ -1,0 +1,294 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{datetime}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{soul}
+\usepackage{fancyvrb}
+\usepackage{amsmath}
+\usepackage[font=small,labelfont=bf]{caption}
+
+
+\graphicspath{ {./} }
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{white},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\lstset{style=mystyle}
+
+\title{Asymmetric cryptography: RSA and Rabin cryptosystems}
+\author{Alexander Buchnev}
+
+\newdateformat{monthYear}{\monthname[\THEMONTH] \THEYEAR}
+\date{\monthYear\today}
+
+\DeclareCaptionFormat{custom}
+{%
+    \textbf{\tiny #1#2}\textit{\tiny #3}
+}
+\captionsetup{format=custom}
+
+\begin{document}
+
+\frame{
+	\titlepage
+}
+
+\section{Terminology reminder}
+
+\begin{frame}
+    Friendly terminology reminder
+\end{frame}
+
+\begin{frame}{Formal definition of PKC}
+    \section{Formal definition of Public Key Cryptography}
+    Public Key Cryptography consists of the public key, private key, 
+    the encryption algorithm and the decryption algorithm. Let us see how these 
+    things interact with each other.
+\end{frame}
+
+\begin{frame}{Formal definition of PKC}
+    \begin{definition}[Public Key Cryptography]
+        Let $\kappa$ be the security parameter of the cryptosystem. (note that 
+        $\kappa$ is not necessarily the key length) An encryption scheme is then 
+        defined by the following spaces (all depending on the security parameter 
+        $\kappa$):
+        \begin{itemize}
+            \item $M_\kappa$ --- Space of all possible messages
+            \item $PK_\kappa$ --- Space of all public keys
+            \item $SK_\kappa$ --- Space of all secret keys
+            \item $C_\kappa$ --- Space of all ciphertexts
+            \item $KeyGen$ --- \textbf{Randomized} algorithm that takes $\kappa$ as input and generates
+            public and private key in polynomial time. 
+            \item $Encrypt : M_\kappa \times PK_\kappa \to C_\kappa$ 
+            \item $Decrypt : C_\kappa \times SK_\kappa \to M_\kappa$
+        \end{itemize}
+    \end{definition}
+\end{frame}
+
+\section{EASY cryptosystem}
+
+\begin{frame}{EASY cryptosystem example}
+    Imagine we have the following cryptosystem, let us call it EASY:
+    \begin{flalign*}
+        & m, n \in \mathbb{Z},\ \gcd(p, n) = 1\\
+        & PK := (p, n) \\
+        & SK := (d, n), \text{ where } d = p^{-1} \pmod n \\ 
+        & Encrypt := m \cdot p \pmod n \\
+        & Decrypt := c \cdot d \pmod n
+    \end{flalign*}
+    \begin{example}
+        \begin{flalign*}
+            & PK = (3, 11) \quad SK = (4, 11) \\
+            & Encrypt := m \cdot 3 \pmod{11} \\    
+            & Decrypt := c \cdot 4 \pmod{11}
+        \end{flalign*}
+    \end{example}
+    What are the $PK_\kappa$, $SK_\kappa$ and $C_\kappa$ for this cryptosystem?
+\end{frame}
+
+\begin{frame}
+    \begin{flalign*}
+        & m, n \in \mathbb{Z},\ \gcd(p, n) = 1\\
+        & SK := (d, n) \\ 
+        & PK := (p, n), \text{ where } d = p^{-1} \pmod n \\
+        & Encrypt := m \cdot p \pmod n \\
+        & Decrypt := c \cdot d \pmod n
+    \end{flalign*}
+    The main question is: how to recover the private key if we know the public 
+    one?
+\end{frame}
+
+\begin{frame}{EASY cryptosystem cryptanalysis}
+    The answer is rather simple and lays directly in the specification, indeed, 
+    to obtain the public key we use the inverse modulo operation 
+    $p = d^{-1} \pmod n$. We can use the same operation, to obtain the private 
+    key! $d = p^{-1} \pmod n$
+\end{frame}
+
+\begin{frame}{How fast is this attack?}
+    \pause
+    The value $d = p^{-1} \pmod n$ can be computed fast: using the fast powering
+    algorithm one can compute it with the following asymptotic: 
+    $\mathcal{O}(\log n)$.
+\end{frame}
+
+\section{RSA cryptosystem}
+
+\begin{frame}{RSA cryptosystem}
+    The RSA cryptosystem:
+    \begin{flalign*}
+        & p, q \overset{\$}{\leftarrow} \mathbb{Z} \\
+        & n := p \cdot q,\quad e \overset{\$}{\leftarrow} \mathbb{Z} : \gcd(n, e) = 1 \\
+        & d := e^{-1} \pmod {(p - 1) (q - 1)}\\
+        & PK := (e, n) \\
+        & SK := (p, q, d) \\ 
+        & Encrypt := m^e \pmod n \\
+        & Decrypt := c^d \pmod n
+    \end{flalign*}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{How does the RSA cryptosystem work?}
+    First, let us note the following thing: \\
+    $d := e^{-1} \pmod {(p - 1) (q - 1)}$ and 
+    $ed \equiv 1 \ \pmod {(p - 1) (q - 1)}$ is the same thing. Having this, we 
+    can rewrite the equation above in the following manner:
+    $ed = 1 + k (p - 1) (q - 1), k \in \mathbb{Z}$, we shall use it later.
+
+    Now we want to prove that the following holds for the RSA:
+    \begin{flalign*}
+        & m \in M_\kappa, pk \in PK_\kappa, sk \in SK_\kappa \\ 
+        & Decrypt(Encrypt(m, pk), sk) = m
+    \end{flalign*}
+
+    Let us instantiate with our $Encrypt$ and $Decrypt$:
+    \begin{flalign*}
+        & m \in M_\kappa, pk \in PK_\kappa, sk \in SK_\kappa \\ 
+        & m \equiv (m^e)^d \pmod n \Rightarrow \\
+        & m \equiv m^{ed} \pmod n \Rightarrow \\
+        & m \equiv m^{1 + k (p - 1) (q - 1)} \pmod n \Rightarrow \\
+        & m \equiv m \cdot (m^{(p - 1) (q - 1)})^k \pmod n \Rightarrow
+    \end{flalign*}
+
+    Let us recall, what is the value for the Euler's $\varphi$ function for the 
+    $n$ in the form $n = pq$, where $p$ and $q$ are primes?
+    
+    It is exactly $\varphi(n) = \varphi(pq) = (p - 1)(q - 1)$.
+
+    Then, by the Euler's Theorem, we obtain the following:
+    \begin{flalign*}
+        & m \in M_\kappa, pk \in PK_\kappa, sk \in SK_\kappa \\ 
+        & m \equiv m \cdot (m^{(p - 1) (q - 1)})^k \pmod n \Rightarrow \\
+        & m \equiv m \cdot (1)^k \pmod n \Rightarrow \\
+        & m \equiv m \pmod n \qed
+    \end{flalign*}
+
+\end{frame}
+
+\begin{frame}{The RSA cryptosystem cryptanalysis}
+    One of the ways to break the cryptosystem is to recover the private key from 
+    the public one, as we did it in EASY cryptanalysis, but in that case it was 
+    indeed easy, it is not the case for the RSA...
+\end{frame}
+
+\begin{frame}{A way to break the RSA}
+    The \textbf{trapdoor} function in RSA is the integer powering with the 
+    composite modulus $n = pq$. If we know how to factor $n$, we can easily
+    compute the decryption constant $d = e^{-1} \pmod {(p - 1) (q - 1)}$, thus
+    we obtain the ability to decrypt all messages.
+\end{frame}
+
+\begin{frame}[fragile]{Python implementation of RSA}
+    \texttt{using pycryptodome (pip install pycryptodome)}
+    \begin{lstlisting}[language=Python]
+#!/bin/env python
+
+import Crypto.Util.number
+
+e = 2 ** 16 + 1
+
+# security parameter
+N_bits = 2048
+
+p = number.getStrongPrime(N_bits, e)
+q = number.getStrongPrime(N_bits, e)
+
+d = (p - 1) * (q - 1)
+n = p * q
+
+pub_key = (e, n)
+priv_key = (d, n)
+
+        \end{lstlisting}
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Fermat's attack}
+    As we remember, in the RSA cryptosystem, the public key modulus has the form
+    $n = pq$, where $p$ and $q$ are primes. Later in this lecture we will 
+    discuss one of the ways to break the RSA cryptosystem with weak primes, 
+    using the Fermat's attack.
+    
+    Pierre de Fermat discovered the way to factor numbers of the form $n = pq$
+    in the 17th century.  
+
+    Method description:
+    Since $n$ is odd, then both $p$ and $q$ are also odd. It is stated that one
+    can make the following substitution:
+    \begin{eqnarray*}
+        & a = \frac{p + q}{2}, b = \frac{p - q}{2} \\
+        & N = a^2 - b^2 = \left(\frac{p + q}{2}\right)^2 - 
+                          \left(\frac{p - q}{2}\right)^2 = pq
+    \end{eqnarray*}
+
+    Without loss of generality let us assume that $p < q$ and they are 
+    \textbf{relatively close} to each other. In that case, if we find $a$ such 
+    that the left part of the equation is the perfect square, then we managed to
+    factor the $n$!!
+
+    And as for the starting values, let us take 
+    $a = \left\lceil \sqrt{N} \right\rceil$ and continuously increase $a$ by $1$
+    each time we did not guess.
+\end{frame}
+
+\begin{frame}[fragile]{Pseudocode implementation}
+    \begin{lstlisting}[language=Python]
+def fermat_factorisation(N):
+    a = ceil(sqrt(N))
+    b2 = a ^ 2 - N
+    
+    while not b2.is_square():
+        a += 1
+        b2 = a ^ 2 - N
+    
+    return a - sqrt(b2)
+    \end{lstlisting}
+\end{frame}
+
+\begin{frame}{Other attacks}
+    At the same time, this was only one of \textbf{MANY} attacks on RSA, the 
+    non-exhaustive list of attacks with vulnerabilities about RSA is presented 
+    below:
+    \begin{itemize}
+        \item Common modulus attack
+        \item Coppersmith's attack
+        \item Small $d$ attack
+        \item Low public exponent attack
+        \item Håstad's broadcast attack
+        \item etc.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Conclusions}
+    \begin{itemize}
+        \item Is RSA bad?
+        \item Why so many number-theoretic attacks?
+        \item Maybe better PRNG?
+        \item Quantum computers?
+    \end{itemize}
+\end{frame}
+
+\end{document}
